@@ -146,10 +146,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alien.cpp" />
+    <ClCompile Include="AlienInvasion.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="SpriteMgrcpp.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Alien.h" />
+    <ClInclude Include="AlienInvasion.h" />
+    <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="Ship.h" />
+    <ClInclude Include="SpriteMgr.h" />
+    <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alien.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alien2.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alienBomb1.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\greenShip.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\Missile05.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\spaceshooter_ByJanaChumi\spaceships_spritesheet.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\wallpaper.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

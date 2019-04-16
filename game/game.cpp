@@ -8,9 +8,16 @@
 using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf; 
+#include "Missile.h"
+#include "Alien.h"
+#include "AlienInvasion.h"
+#include "Bomb.h"
+#include "Ship.h"
+#include "UI.h"
+#include "SpriteMgr.h"
 
 //============================================================
-// YOUR HEADER WITH YOUR NAME GOES HERE. PLEASE DO NOT FORGET THIS
+// Kyler Seal 
 //============================================================
 
 // note: a Sprite represents an image on screen. A sprite knows and remembers its own position
@@ -18,22 +25,7 @@ using namespace sf;
 // the current position of the ship. 
 // x is horizontal, y is vertical. 
 // 0,0 is in the UPPER LEFT of the screen, y increases DOWN the screen
-void moveShip(Sprite& ship)
-{
-	const float DISTANCE = 5.0;
 
-	if (Keyboard::isKeyPressed(Keyboard::Left))
-	{
-		// left arrow is pressed: move our ship left 5 pixels
-		// 2nd parm is y direction. We don't want to move up/down, so it's zero.
-		ship.move(-DISTANCE, 0);
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
-		// right arrow is pressed: move our ship right 5 pixels
-		ship.move(DISTANCE, 0);
-	}
-}
 
 
 
@@ -61,6 +53,8 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
+	SpriteMgr spriteMgr;
+
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
 
@@ -70,14 +64,15 @@ int main()
 	background.setScale(1.5, 1.5);
 
 	// create sprite and texture it
-	Sprite ship;
-	ship.setTexture(shipTexture);
-
+	Sprite shipSprite;
+	shipSprite.setTexture(shipTexture);
+	
 
 	// initial position of the ship will be approx middle of screen
 	float shipX = window.getSize().x / 2.0f;
-	float shipY = window.getSize().y / 2.0f;
-	ship.setPosition(shipX, shipY);
+	float shipY = window.getSize().y / 1.1f;
+	Vector2f pos(shipX, shipY);
+	Ship ship(wallpaper, spriteMgr, pos);
 
 
 	while (window.isOpen())
@@ -95,7 +90,7 @@ int main()
 			{
 				if (event.key.code == Keyboard::Space)
 				{
-					// handle space bar
+					ship.shootMissile();
 				}
 				
 			}
@@ -111,11 +106,11 @@ int main()
 		// will appear on top of background
 		window.draw(background);
 
-		moveShip(ship);
+		ship.moveShip();
 
 		// draw the ship on top of background 
 		// (the ship from previous frame was erased when we drew background)
-		window.draw(ship);
+		ship.draw(window);
 
 
 		// end the current frame; this makes everything that we have 
