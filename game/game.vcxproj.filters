@@ -90,5 +90,14 @@
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\greenShip.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\bomb64.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\bomb100.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\spaceShipSprite.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

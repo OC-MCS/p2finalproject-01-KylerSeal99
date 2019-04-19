@@ -171,8 +171,11 @@
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alien.png" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alien2.png" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\alienBomb1.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\bomb100.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\bomb64.png" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\greenShip.png" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\Missile05.png" />
+    <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\spaceShipSprite.jpg" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\spaceshooter_ByJanaChumi\spaceships_spritesheet.png" />
     <Image Include="..\..\..\..\..\OneDrive\Documents\OC Homework\Programming 2 Lab\FinalProjectSprites\wallpaper.jpg" />
   </ItemGroup>

@@ -40,40 +40,22 @@ int main()
 
 	// load textures from file into memory. This doesn't display anything yet.
 	// Notice we do this *before* going into animation loop.
-	Texture shipTexture;
-	if (!shipTexture.loadFromFile("ship.png"))
-	{
-		cout << "Unable to load ship texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
-	Texture starsTexture;
-	if (!starsTexture.loadFromFile("stars.jpg"))
-	{
-		cout << "Unable to load stars texture!" << endl;
-		exit(EXIT_FAILURE);
-	}
+	
 
 	SpriteMgr spriteMgr;
+	UIMgr uiMgr;
 
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
-
-	Sprite background;
-	background.setTexture(starsTexture);
-	// The texture file is 640x480, so scale it up a little to cover 800x600 window
-	background.setScale(1.5, 1.5);
-
-	// create sprite and texture it
-	Sprite shipSprite;
-	shipSprite.setTexture(shipTexture);
-	
+	Sprite wallpaper;
+	wallpaper = spriteMgr.getWallpaperS();
+	wallpaper.setScale(1.5, 1.5);
 
 	// initial position of the ship will be approx middle of screen
-	float shipX = window.getSize().x / 2.0f;
-	float shipY = window.getSize().y / 1.1f;
-	Vector2f pos(shipX, shipY);
-	Ship ship(wallpaper, spriteMgr, pos);
+	Vector2f pos(window.getSize().x / 2.0f, window.getSize().y / 1.1f);
+	Ship ship(spriteMgr, wallpaper, pos, window);
 
+	AlienInvasion alienInvasion(spriteMgr, wallpaper, uiMgr, ship);
 
 	while (window.isOpen())
 	{
@@ -88,11 +70,17 @@ int main()
 				window.close();
 			else if (event.type == Event::KeyPressed)
 			{
+				 // Checks if missile needs to be shot
 				if (event.key.code == Keyboard::Space)
 				{
 					ship.shootMissile();
 				}
-				
+				// Checks if start button is clicked
+				if (event.type == Event::MouseButtonReleased) 
+				{
+					cout << "Calling start button check function \n";
+					uiMgr.isStartButtonClicked(window.mapPixelToCoords(Mouse::getPosition(window)));
+				}
 			}
 		}
 
@@ -101,27 +89,46 @@ int main()
 		// code to produce ONE frame of the animation. The next iteration of the loop will
 		// render the next frame, and so on. All this happens ~ 60 times/second.
 		//===========================================================
+		window.clear();
 
-		// draw background first, so everything that's drawn later 
-		// will appear on top of background
-		window.draw(background);
+		// For the main Game 
+		if (!uiMgr.gameOn()) // If You change this to if (!uiMgr.gameOn() 
+							 // It will display menu but button does not work
+		{
+			cout << "Running Menu \n";
+			window.draw(wallpaper);
+			uiMgr.startGame();
+			uiMgr.drawMenu(window);
+			uiMgr.display(window);
+		}
+		else
+		{
+			if (uiMgr.restartLevel())
+			{
+				alienInvasion.restartAliens();
+				ship.spawnShip();
+			}
+			// Draw the background
+			window.draw(wallpaper);
 
-		ship.moveShip();
+			// Handle & Draw ship assets
+			ship.moveShip();
+			ship.checkMissiles();
+			ship.draw(window);
 
-		// draw the ship on top of background 
-		// (the ship from previous frame was erased when we drew background)
-		ship.draw(window);
+			// Handle & Draw alien assets
+			alienInvasion.dropAliens(window);
+			alienInvasion.draw(window);
+			alienInvasion.dropBombs();
+			alienInvasion.moveBombs(window);
+			alienInvasion.drawBombs(window);
+			alienInvasion.checkHit();
 
+			// Dispaly current info
+			uiMgr.display(window);
+		}
 
-		// end the current frame; this makes everything that we have 
-		// already "drawn" actually show up on the screen
 		window.display();
-
-		// At this point the frame we have built is now visible on screen.
-		// Now control will go back to the top of the animation loop
-		// to build the next frame. Since we begin by drawing the
-		// background, each frame is rebuilt from scratch.
-
 	} // end body of animation loop
 
 	return 0;

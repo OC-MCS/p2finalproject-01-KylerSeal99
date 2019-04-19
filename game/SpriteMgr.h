@@ -6,29 +6,35 @@ using namespace std;
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
+
 class SpriteMgr
 {
 private:
+	// Holds textures and sprites for all the assests
 	Texture wallpaperTxtr;
-	Sprite wallpaperSprite;
+	Sprite spriteWallpaper;
 
 	Texture shipTxtr;
-	Sprite shipSprite;
+	Sprite spriteShip;
 
 	Texture missileTxtr;
-	Sprite missileSprite;
+	Sprite spriteMissile;
 
 	Texture alien1Txtr;
-	Sprite alien1Sprite;
+	Sprite spriteAlien1;
 
 	Texture alien2Txtr;
-	Sprite alien2Sprite;
+	Sprite spriteAlien2;
 
 	Texture bomb1Txtr;
-	Texture bomb2Sprite;
-public:
-	SpriteMgr();
+	Sprite spriteBomb1;
 
+	Texture bomb2Txtr;
+	Sprite spriteBomb2;
+public:
+	SpriteMgr(); // constructors
+
+	// Getters for the sprites
 	Sprite getShipS();
 	Sprite getMissileS();
 	Sprite getWallpaperS();
